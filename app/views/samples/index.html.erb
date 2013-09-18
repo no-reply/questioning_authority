@@ -1,0 +1,11 @@
+<%= content_tag :div, :class => "well" do %>
+  <%= content_tag :h2, "Sample Authorities Form" %>
+<% end %>
+
+<%= form_tag root_path do %>
+  <%= content_tag :fieldset do %>
+    <%= content_tag :legend, "Example using .typeahead for auto-suggest" %>
+    <%= content_tag :label, "LC Subject Headings" %>
+    <%= text_field_tag "lcsh", nil, :placeholder => "Start typing a subject..." %>
+  <% end %>
+<% end %>

@@ -30,6 +30,7 @@ group :doc do
 end
 
 gem 'curb'
+gem 'bootstrap-sass'
 
 group :development, :test do
   gem 'rspec'

@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>QuestioningAuthority</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <title>QaTestApp</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => false %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => false %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+<%= content_tag :div, :class => "row" do %>
+  <%= content_tag :div, :class => "span1" do %>
+    <!-- gutter -->
+  <% end %>
+  <%= content_tag :div, :class => "span11" do %>
+    <%= yield %>
+  <% end %>
+<% end %>
 
 </body>
 </html>
