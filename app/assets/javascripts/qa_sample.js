@@ -5,33 +5,19 @@
   use with .typeahead.  
 
   lcshQuery
-    sends a url such as /terms?q=MySubject
+    sends the url /terms?vocab=lcsh&q=MySubject
     
-    recieves a JSON object such as:
-      [
-        {"id":"1", "label":"MySubectFoo"},
-        {"id":"1", "label":"MySubectBar"}
-      ]
-    
-    parses the results and processes the data as:
+    and returns the data to .typeahaed as:
       ["MySubjectFoo", "MySubjectBar"]
-
-    and sends this to .typeahead
 
 **/
 function lcshQuery(query, process) {
-  terms = [];
-  map = {};
 
   $.ajax({ 
-    url: '/terms?q='+query,
+    url: '/terms?vocab=lcsh&q='+query,
     dataType: 'json'
   }).success(function(data) {
-    $.each(data, function (i, term) {
-      map[term.label] = term;
-      terms.push(term.label);
-    });
-    process(terms);
+    process(data);
   }).fail(function(jqXHR, textStatus, errorThrown) {
     alert(url);
   });      
