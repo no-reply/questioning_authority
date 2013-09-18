@@ -11,10 +11,10 @@
       ["MySubjectFoo", "MySubjectBar"]
 
 **/
-function lcshQuery(query, process) {
+function suggestionQuery(query, vocab, process) {
 
   $.ajax({ 
-    url: '/terms?vocab=lcsh&q='+query,
+    url: '/terms?vocab='+vocab+'&q='+query,
     dataType: 'json'
   }).success(function(data) {
     process(data);
@@ -30,8 +30,7 @@ jQuery(document).ready(function() {
   // Typeahead features
  
   // Calls the lcshQuery function to get an array of terms that match query
-  $('#lcsh').typeahead({
-    source: function (query, process) { lcshQuery(query, process) }
+  $('.qa-suggest').typeahead({ source: function (query, process) { suggestionQuery(query, this.$element.data('vocabulary'), process) }
 });
   
 
