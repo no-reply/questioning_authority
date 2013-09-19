@@ -28,8 +28,8 @@ function suggestionQuery(query, vocab, subauthority, process) {
           map = {};
 
           $.each(data, function (i, singleResult) {
-              map[singleResult.term] = singleResult;
-              term_list.push(singleResult.term);
+              map[singleResult.label] = singleResult;
+              term_list.push(singleResult.label);
           });
     process(term_list);
   }).fail(function(jqXHR, textStatus, errorThrown) {
