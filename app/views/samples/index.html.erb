@@ -19,5 +19,14 @@
         <%= content_tag :label, "LOC (TGM)" %>
         <%= text_field_tag "lcsh_graphicMaterials", nil, :placeholder => "Start typing a graphic material name...",
                            :data => { :vocabulary => "loc", :subauthority => "graphicMaterials", :name=>"lcsh_graphicMaterials" }, :class => "qa-suggest" %>
+
+        <%= content_tag :label, "LOC Genre/Form Terms for Library and Archival Materials (via OCLC Terminology service)" %>
+        <%= text_field_tag "lcgft", nil, :placeholder => "Start typing a genre/form name...",
+                           :data => { :vocabulary => "oclcts", :subauthority => "lcgft", :name=>"lcgft" }, :class => "qa-suggest" %>
+
+        <%= content_tag :label, "MESH (via OCLC Terminology service)" %>
+        <%= text_field_tag "oclcts_mesh", nil, :placeholder => "Start typing a medial term name...",
+                           :data => { :vocabulary => "oclcts", :subauthority => "mesh", :name=>"oclcts_mesh" }, :class => "qa-suggest" %>
+
   <% end %>
 <% end %>
