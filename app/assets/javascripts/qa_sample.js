@@ -11,10 +11,15 @@
       ["MySubjectFoo", "MySubjectBar"]
 
 **/
-function suggestionQuery(query, vocab, process) {
-
+function suggestionQuery(query, vocab, subauthority, process) {
+	
+ if (subauthority) {
+   url = '/terms?vocab='+vocab+'&q='+query+'&sub_authority='+subauthority
+ } else {
+	url = '/terms?vocab='+vocab+'&q='+query
+}
   $.ajax({ 
-    url: '/terms?vocab='+vocab+'&q='+query,
+    url: url,
     dataType: 'json'
   }).success(function(data) {
     process(data);
@@ -26,11 +31,12 @@ function suggestionQuery(query, vocab, process) {
 
 
 jQuery(document).ready(function() {
+	
 
   // Typeahead features
  
   // Calls the lcshQuery function to get an array of terms that match query
-  $('.qa-suggest').typeahead({ source: function (query, process) { suggestionQuery(query, this.$element.data('vocabulary'), process) }
+  $('.qa-suggest').typeahead({ source: function (query, process) { suggestionQuery(query, this.$element.data('vocabulary'), this.$element.data('subauthority'), process) }
 });
   
 

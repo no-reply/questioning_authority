@@ -8,5 +8,8 @@
     <%= content_tag :label, "LC Subject Headings" %>
     <%= text_field_tag "lcsh", nil, :placeholder => "Start typing a subject...", 
         :data => { :vocabulary => "lcsh" }, :class => "qa-suggest" %>
+	<%= content_tag :label, "States (local authority list)" %>
+	<%= text_field_tag "states", nil, :placeholder => "Start typing a state name...", 
+	    :data => { :vocabulary => "local", :subauthority => "states" }, :class => "qa-suggest" %>
   <% end %>
 <% end %>
