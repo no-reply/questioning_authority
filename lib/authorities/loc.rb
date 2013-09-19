@@ -114,10 +114,10 @@ module Authorities
       self.raw_response.each do |single_response|
         if single_response[0] == "atom:entry"
           id = nil
-          label = ''
+          term = ''
           single_response.each do |result_part|
             if(result_part[0] == 'atom:title')
-              label = result_part[2]
+              term = result_part[2]
             end
 
             if(result_part[0] == 'atom:id')
@@ -126,8 +126,8 @@ module Authorities
 
           end
 
-          id ||= label
-          result << {"id"=>id, "label"=>label}
+          id ||= term
+          result << {"id"=>id, "term"=>term}
 
         end
       end
@@ -162,27 +162,27 @@ module Authorities
       if full_record != nil
         full_record.each do |section|
           if section.class == Array
-            label = section[0].split(':').last.to_s
-            case label
+            term = section[0].split(':').last.to_s
+            case term
               when 'title'
-                parsed_result[label] = section[2]
+                parsed_result[term] = section[2]
               when 'link'
                 if section[1]['type'] != nil
-                  parsed_result[label + "||#{section[1]['type']}"] = section[1]["href"]
+                  parsed_result[term + "||#{section[1]['type']}"] = section[1]["href"]
                 else
-                  parsed_result[label] = section[1]["href"]
+                  parsed_result[term] = section[1]["href"]
                 end
               when 'id'
-                parsed_result[label] = section[2]
+                parsed_result[term] = section[2]
               when 'author'
                 author_list = []
                 #FIXME: Find example with two authors to better understand this data.
                 author_list << section[2][2]
-                parsed_result[label] = author_list
+                parsed_result[term] = author_list
               when 'updated'
-                parsed_result[label] = section[2]
+                parsed_result[term] = section[2]
               when 'created'
-                parsed_result[label] = section[2]
+                parsed_result[term] = section[2]
             end
 
           end
