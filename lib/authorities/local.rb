@@ -10,24 +10,24 @@ module Authorities
       rescue
         sub_authority_hash = {}
       end
-      @terms = normalize_terms(sub_authority_hash.fetch(:labels, []))
+      @terms = normalize_terms(sub_authority_hash.fetch(:terms, []))
       if q.blank?
         self.response = @terms
       else
         sub_terms = []
-        @terms.each { |term| sub_terms << term if term[:label].start_with?(q) }
+        @terms.each { |term| sub_terms << term if term[:term].start_with?(q) }
         self.response = sub_terms
       end
     end
-    
+
     def normalize_terms(terms)
       normalized_terms = []
       terms.each do |term|
         if term.is_a? String
-          normalized_terms << { :id => term, :label => term }
+          normalized_terms << { :id => term, :term => term }
         else
-          term[:id] = term[:id] || term[:label]
-          normalized_terms << term 
+          term[:id] = term[:id] || term[:term]
+          normalized_terms << term
         end
       end
       normalized_terms
@@ -36,9 +36,9 @@ module Authorities
     def parse_authority_response
       parsed_response = []
       self.response.each do |res|
-        parsed_response << { :id => res[:id], :label => res[:label] }
+        parsed_response << { :id => res[:id], :label => res[:term] }
       end
-      parsed_response.to_json
+      self.response = parsed_response
     end
     
     def get_full_record(id)
