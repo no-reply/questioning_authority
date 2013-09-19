@@ -15,10 +15,11 @@ function suggestionQuery(query, vocab, subauthority, process) {
 
 
  if (subauthority) {
-   url = '/terms?vocab='+vocab+'&q='+query+'&sub_authority='+subauthority
+   url = '/search/'+vocab+'/' + subauthority + '&q='+query;
  } else {
-	url = '/terms?vocab='+vocab+'&q='+query
+	url = '/search/'+vocab+'&q='+query;
 }
+
   $.ajax({ 
     url: url,
     dataType: 'json'
