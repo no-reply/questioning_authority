@@ -15,9 +15,9 @@ function suggestionQuery(query, vocab, subauthority, process) {
 
 
  if (subauthority) {
-   url = '/search/'+vocab+'/' + subauthority + '&q='+query;
+   url = '/search/'+vocab+'/' + subauthority + '?q='+query;
  } else {
-	url = '/search/'+vocab+'&q='+query;
+	url = '/search/'+vocab+'?q='+query;
 }
 
   $.ajax({ 
