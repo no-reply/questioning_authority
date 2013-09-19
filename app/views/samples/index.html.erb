@@ -5,28 +5,27 @@
 <%= form_tag root_path do %>
   <%= content_tag :fieldset do %>
     <%= content_tag :legend, "Example using .typeahead for auto-suggest" %>
+    
     <%= content_tag :label, "LC Subject Headings" %>
     <%= text_field_tag "lcsh", nil, :placeholder => "Start typing a subject...",
         :data => { :vocabulary => "lcsh", :name=>"lcsh" }, :class => "qa-suggest" %>
-	<%= content_tag :label, "States (local authority list)" %>
-	<%= text_field_tag "states", nil, :placeholder => "Start typing a state name...", 
-	    :data => { :vocabulary => "local", :subauthority => "states", :name=>"states" }, :class => "qa-suggest" %>
+	  
+    <%= content_tag :label, "States (local authority list)" %>
+	  <%= text_field_tag "states", nil, :placeholder => "Start typing a state name...", 
+	      :data => { :vocabulary => "local", :subauthority => "states", :name=>"states" }, :class => "qa-suggest" %>
 
-        <%= content_tag :label, "LOC (iso639-2)" %>
-        <%= text_field_tag "lcsh_language", nil, :placeholder => "Start typing a language name...",
-                           :data => { :vocabulary => "loc", :subauthority => "iso639-2", :name=>"lcsh_language" }, :class => "qa-suggest" %>
+    <%= content_tag :label, "LOC (iso639-2)" %>
+    <%= text_field_tag "lcsh_language", nil, :placeholder => "Start typing a language name...",
+        :data => { :vocabulary => "loc", :subauthority => "iso639-2", :name=>"lcsh_language" }, :class => "qa-suggest" %>
 
-        <%= content_tag :label, "LOC (TGM)" %>
-        <%= text_field_tag "lcsh_graphicMaterials", nil, :placeholder => "Start typing a graphic material name...",
-                           :data => { :vocabulary => "loc", :subauthority => "graphicMaterials", :name=>"lcsh_graphicMaterials" }, :class => "qa-suggest" %>
+    <%= content_tag :label, "LOC (TGM)" %>
+    <%= text_field_tag "lcsh_graphicMaterials", nil, :placeholder => "Start typing a graphic material name...",
+        :data => { :vocabulary => "loc", :subauthority => "graphicMaterials", 
+        :name=>"lcsh_graphicMaterials" }, :class => "qa-suggest" %>
 
-        <%= content_tag :label, "LOC Genre/Form Terms for Library and Archival Materials (via OCLC Terminology service)" %>
-        <%= text_field_tag "lcgft", nil, :placeholder => "Start typing a genre/form name...",
-                           :data => { :vocabulary => "oclcts", :subauthority => "lcgft", :name=>"lcgft" }, :class => "qa-suggest" %>
-
-        <%= content_tag :label, "MESH (via OCLC Terminology service)" %>
-        <%= text_field_tag "oclcts_mesh", nil, :placeholder => "Start typing a medial term name...",
-                           :data => { :vocabulary => "oclcts", :subauthority => "mesh", :name=>"oclcts_mesh" }, :class => "qa-suggest" %>
-
+    <%= content_tag :label, "MESH Headings" %>
+    <%= text_field_tag "mesh", nil, :placeholder => "Start typing a MESH term...",
+        :data => { :vocabulary => "mesh", :name=>"mesh" }, :class => "qa-suggest" %>
+        
   <% end %>
 <% end %>
