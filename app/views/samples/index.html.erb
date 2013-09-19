@@ -6,10 +6,14 @@
   <%= content_tag :fieldset do %>
     <%= content_tag :legend, "Example using .typeahead for auto-suggest" %>
     <%= content_tag :label, "LC Subject Headings" %>
-    <%= text_field_tag "lcsh", nil, :placeholder => "Start typing a subject...", 
-        :data => { :vocabulary => "lcsh" }, :class => "qa-suggest" %>
+    <%= text_field_tag "lcsh", nil, :placeholder => "Start typing a subject...",
+        :data => { :vocabulary => "lcsh", :name=>"lcsh" }, :class => "qa-suggest" %>
 	<%= content_tag :label, "States (local authority list)" %>
 	<%= text_field_tag "states", nil, :placeholder => "Start typing a state name...", 
-	    :data => { :vocabulary => "local", :subauthority => "states" }, :class => "qa-suggest" %>
+	    :data => { :vocabulary => "local", :subauthority => "states", :name=>"states" }, :class => "qa-suggest" %>
+
+        <%= content_tag :label, "LCSH (iso639-2)" %>
+        <%= text_field_tag "lcsh_language", nil, :placeholder => "Start typing a language name...",
+                           :data => { :vocabulary => "loc", :subauthority => "iso639-2", :name=>"lcsh_language" }, :class => "qa-suggest" %>
   <% end %>
 <% end %>

@@ -40,8 +40,6 @@ module Authorities
 
     # Parse the result from LOC, and return an JSON array of terms that match the query.
     def results
-      puts 'JSON Encode is ' + ActiveSupport::JSON.encode(self.response.to_json).to_s
-      puts 'JSON Decode is ' + ActiveSupport::JSON.decode(self.response.to_json).to_s
       self.response.to_json
     end
 

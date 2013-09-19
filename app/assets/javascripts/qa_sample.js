@@ -12,8 +12,7 @@
 
 **/
 function suggestionQuery(query, vocab, subauthority, process) {
-    name_list = [];
-    map = {};
+
 
  if (subauthority) {
    url = '/terms?vocab='+vocab+'&q='+query+'&sub_authority='+subauthority
@@ -24,13 +23,14 @@ function suggestionQuery(query, vocab, subauthority, process) {
     url: url,
     dataType: 'json'
   }).success(function(data) {
-
+          term_list = [];
+          map = {};
 
           $.each(data, function (i, singleResult) {
               map[singleResult.term] = singleResult;
-              name_list.push(singleResult.term);
+              term_list.push(singleResult.term);
           });
-    process(name_list);
+    process(term_list);
   }).fail(function(jqXHR, textStatus, errorThrown) {
     alert(url);
   });      
@@ -43,8 +43,13 @@ jQuery(document).ready(function() {
 
   // Typeahead features
  
-  // Calls the lcshQuery function to get an array of terms that match query
+  // Creates a hidden set of fields that hold the value of the selected text.
+    $('.qa-suggest').each(function(i, obj) {
+        $(obj).after('<input type="hidden" name=""' + $(obj).attr('name') + '_value" value="" + id="' + $(obj).attr('id') + '_value">');
+    });
+
   $('.qa-suggest').typeahead({
+
       source: function (query, process) { suggestionQuery(query, this.$element.data('vocabulary'), this.$element.data('subauthority'), process) },
       matcher: function (item) {
           if (item.toLowerCase().indexOf(this.query.trim().toLowerCase()) != -1) {
@@ -60,7 +65,9 @@ jQuery(document).ready(function() {
       },
 
       updater: function (item) {
-          selectedItem = map[item].id;
+
+          $('#' + this.$element.data('name') + '_value').attr('value', map[item].id);
+          //alert($('#' + this.$element.data('name') + '_value').attr('value'));
           return item;
       }
   });
