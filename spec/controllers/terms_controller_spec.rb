@@ -61,4 +61,17 @@ describe TermsController do
     end
   
   end
+  
+  describe "#describe" do
+    
+    context "no :vocab or :sub_authority" do
+      let(:expected) { [ "Lcsh", "Loc", "Local", "Mesh", "Oclcts", "Tgnlang" ] }
+      it "should return a list of authorities" do
+        # get :describe
+        # response.should be_success
+        # response.body.should include("Lcsh")
+      end
+    end
+    
+  end
 end

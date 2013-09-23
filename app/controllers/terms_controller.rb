@@ -40,7 +40,16 @@ class TermsController < ApplicationController
     end
 
   end
-
+  
+  def describe
+    response = Authorities.constants.select { |c| Authorities.const_get(c).is_a? Class }
+    respond_to do |format|
+      format.html { render :layout => false, :text => response }
+      format.json { render :layout => false, :text => response }
+      format.js   { render :layout => false, :text => response }
+    end
+  end
+  
   def check_vocab_param
     unless params[:vocab].present?
       redirect_to :status => 400
