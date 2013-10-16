@@ -5,7 +5,7 @@
 class Qa::TermsController < ApplicationController
 
   before_action :check_search_params, only:[:search]
-  before_action :check_vocab_param, :check_authority, :check_sub_authority
+  before_action :check_vocab_param, :check_authority, :check_sub_authority, except: [:describe]
   
   #search that returns all results
   def index
@@ -40,7 +40,16 @@ class Qa::TermsController < ApplicationController
     end
 
   end
-
+  
+  def describe
+    response = Qa::Authorities.constants.select { |c| Qa::Authorities.const_get(c).is_a? Class }
+    respond_to do |format|
+      format.html { render :layout => false, :text => response }
+      format.json { render :layout => false, :text => response }
+      format.js   { render :layout => false, :text => response }
+    end
+  end
+  
   def check_vocab_param
     unless params[:vocab].present?
       redirect_to :status => 400

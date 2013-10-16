@@ -4,4 +4,5 @@ Qa::Engine.routes.draw do
   match "/terms/:vocab" => "terms#index", :via=>:get
   match "/terms/:vocab/:sub_authority" => "terms#index", :via=>:get
   match "/terms" => "terms#index", :via=>:get
+  match "/describe" => "terms#describe", :via=>:get
 end
