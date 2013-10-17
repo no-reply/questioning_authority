@@ -43,6 +43,7 @@ class Qa::TermsController < ApplicationController
   
   def describe
     response = Qa::Authorities.constants.select { |c| Qa::Authorities.const_get(c).is_a? Class }
+    response.reject! { |r| r.eql?(:Base) }
     respond_to do |format|
       format.html { render :layout => false, :text => response }
       format.json { render :layout => false, :text => response }

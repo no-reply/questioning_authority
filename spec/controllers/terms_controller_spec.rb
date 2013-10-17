@@ -47,7 +47,6 @@ describe Qa::TermsController do
 
       it "should return a set of terms for a lcsh query" do
         get :index, { :q => "Blues", :vocab => "lcsh" }
-        puts response.body
         response.should be_success
       end
       it "should return a set of terms for a tgnlang query" do
@@ -75,8 +74,9 @@ describe Qa::TermsController do
       let(:expected) { [ "Lcsh", "Loc", "Local", "Mesh", "Oclcts", "Tgnlang" ] }
       it "should return a list of authorities" do
         get :describe
-        response.should be_success
-        puts response.body
+        expect(response).to be_success
+        expected.each { |e| expect(response.body).to include(e) }
+        expect(response.body).to_not include("Base")
       end
     end
     
